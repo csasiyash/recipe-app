@@ -1,7 +1,6 @@
 class Category {
-  constructor(key, title, color) {
-    //console.log('I am at constructor');
-    this.key = key;
+  constructor(id, title, color) {
+    this.id = id;
     this.title = title;
     this.color = color;
   }
