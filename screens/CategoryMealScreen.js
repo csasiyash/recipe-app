@@ -15,7 +15,14 @@ const CategoryMealScreen = (props) => {
     return (
       <View style={styles.mealItem}>
         <TouchableOpacity
-          onPress={() => props.navigation.navigate('MealDetail')}>
+          onPress={() => {
+            props.navigation.navigate({
+              routeName: 'MealDetail',
+              params: {
+                mealId: itemData.item.id,
+              },
+            });
+          }}>
           <View>
             <View style={styles.mealHeader}>
               <ImageBackground
@@ -75,6 +82,9 @@ const CategoryMealScreen = (props) => {
 // CategoryMealScreen.Options = (navigationData) => {
 //   console.log(navigationData);
 // };
+
+// CategoryMealScreen.navigationOptions = (navigationData) =>
+//   console.log(navigationData);
 
 const styles = StyleSheet.create({
   bgImage: {
