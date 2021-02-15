@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import {CATEGORIES, MEALS} from '../data/dummy-data';
+import {Ionicons} from 'react-native-vector-icons';
 
 const CategoryMealScreen = (props) => {
   const renderMealItem = (itemData) => {
