@@ -6,10 +6,14 @@ import CategoryMealScreen from '../screens/CategoryMealScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import {Ionicons} from 'react-native-vector-icons';
+import FilterScreen from '../screens/FilterScreen';
+//import Ionicons from 'react-native-vector-icons';
 import React from 'react';
 import {Platform} from 'react-native';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
+// import {Icon} from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 
 const defaultStackNavigationOptions = {
   headerStyle: {
@@ -22,20 +26,17 @@ const MealsNavigator = createStackNavigator(
   {
     Categories: {
       screen: CategoriesScreen,
-      navigationOptions: {
-        headerTitle: 'Meal Categories',
-      },
     },
     CategoryMeal: {
       screen: CategoryMealScreen,
-      navigationOptions: {
-        headerTitle: 'SelectedCategoryName',
-      },
+      // navigationOptions: {
+      //   headerTitle: 'SelectedCategoryName',
+      // },
     },
     MealDetail: {
       screen: MealDetailScreen,
       navigationOptions: {
-        headerTitle: 'SelectedMealName',
+        // headerTitle: 'SelectedMealName',
       },
     },
   },
@@ -64,26 +65,21 @@ const tabScreenConfig = {
     screen: MealsNavigator,
     navigationOptions: {
       tabBarLabel: 'Meals',
-      tabBarColor: 'rgba(16,126,177,255)',
-      // tabBarIcon: () => {
-      //   return <Ionicons name="ios-home" color="blue" size={25} />;
-      // },
+      tabBarColor: Colors.primaryColor,
+      tabBarIcon: (tabInfo) => {
+        return <Icon name="utensils" size={24} color={tabInfo.tintColor} />;
+      },
     },
-
-    // navigationOptions: {
-    //   tabBarIcon: () => {
-    //     return <Ionicons name="ios-restaurant" size={25} color="#eeeeee" />;
-    //   },
-    // },
   },
+
   Favorites: {
     screen: FavNavigator,
     navigationOptions: {
       tabBarLabel: 'Favorites',
       tabBarColor: Colors.accentColor, //tabBarColor only works if shifting=true
-      // TabBarIcon: (tabInfo) => {
-      //   return <Ionicons name="ios-star" size={25} />;
-      // },
+      tabBarIcon: (tabInfo) => {
+        return <Icon name="heartbeat" size={24} color={tabInfo.tintColor} />;
+      },
     },
   },
 };
@@ -101,4 +97,19 @@ const MealsFavTabNavigator =
         },
       });
 
-export default createAppContainer(MealsFavTabNavigator);
+// we are using a stack navigator to make a filter screen just to have a bydefault header feature
+const FilterNavigator = createStackNavigator({
+  FilterNav: {
+    screen: FilterScreen,
+    navigationOptions: {
+      headerTitle: 'Filterss',
+    },
+  },
+});
+
+const MainNavigator = createDrawerNavigator({
+  MealsFavs: MealsFavTabNavigator,
+  Filters: FilterNavigator,
+});
+
+export default createAppContainer(MainNavigator);
