@@ -37,13 +37,21 @@ const CategoriesScreen = (props) => {
   );
 };
 
-CategoriesScreen.navigationOptions = {
-  headerTitle: 'Meal Categories',
-  headerLeft: () => (
-    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-      <Item title="Menu" iconName="bars" onPress={() => {}} />
-    </HeaderButtons>
-  ),
+CategoriesScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'Meal Categories',
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Menu"
+          iconName="bars"
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({
@@ -63,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   title: {
-    fontFamily: 'OpenSans-Bold',
+    fontFamily: 'OpenSans-BoldItalic',
     fontSize: 17,
   },
 });
