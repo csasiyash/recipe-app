@@ -33,7 +33,7 @@ const MealList = (props) => {
               </ImageBackground>
             </View>
             <View style={styles.mealDetail}>
-              <DefaultText>{itemData.item.duration}</DefaultText>
+              <DefaultText>{itemData.item.duration}m</DefaultText>
               <DefaultText>
                 {itemData.item.complexity.toUpperCase()}
               </DefaultText>
